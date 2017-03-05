@@ -355,3 +355,11 @@ add_custom_target(mxnet_lint COMMAND ${CMAKE_COMMAND} -DMSVC=${MSVC} -DPYTHON_EX
 
 add_subdirectory(tests/cpp)
 add_subdirectory(example/image-classification/predict-cpp)
+add_custom_target(MXCPP ALL)
+add_custom_command(TARGET MXCPP
+	PRE_BUILD
+	COMMAND echo "Generating cpp-package/include/mxnet-cpp/op.h ..."  
+	COMMAND python OpWrapperGenerator.py
+	WORKING_DIRECTORY cpp-package/src/OpWrapperGenerator/
+	COMMENT  "regenerate mxcpp op.h"
+)

@@ -181,3 +181,10 @@ if [ ${TASK} == "perl_test" ]; then
     make test || exit -1
     exit 0
 fi
+if [ ${TASK} == "mxcpp_test" ]; then
+    cd ${MXNET_HOME}/cpp-package
+    make
+    make example
+    cd -
+    exit 0
+fi
